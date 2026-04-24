@@ -1,4 +1,3 @@
-A_star_search
 import heapq
 
 def a_star(graph, heuristic, start, goal):
