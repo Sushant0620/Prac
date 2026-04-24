@@ -1,0 +1,47 @@
+class State:
+    def __init__(self, monkey_pos, box_pos, on_box, has_banana):
+        self.monkey_pos = monkey_pos
+        self.box_pos = box_pos
+        self.on_box = on_box
+        self.has_banana = has_banana
+
+    def is_goal(self):
+        return self.has_banana
+
+
+def monkey_banana():
+    # Initial state
+    state = State("left", "middle", False, False)
+
+    print("Initial State:")
+    print(vars(state))
+    print()
+
+    # Step 1: Move monkey to box
+    print("Monkey moves to box position")
+    state.monkey_pos = state.box_pos
+
+    # Step 2: Push box under banana (assume banana at 'middle')
+    print("Monkey pushes box to middle")
+    state.box_pos = "middle"
+    state.monkey_pos = "middle"
+
+    # Step 3: Climb box
+    print("Monkey climbs the box")
+    state.on_box = True
+
+    # Step 4: Grab banana
+    if state.on_box and state.monkey_pos == state.box_pos == "middle":
+        print("Monkey grabs the banana 🍌")
+        state.has_banana = True
+
+    print("\nFinal State:")
+    print(vars(state))
+
+    if state.is_goal():
+        print("\nGoal Achieved: Monkey got the banana!")
+    else:
+        print("\nGoal Not Achieved")
+
+
+monkey_banana()
